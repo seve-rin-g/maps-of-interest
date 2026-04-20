@@ -30,9 +30,10 @@ header {
     text-align: center;
 }
 
-header h1 {
+h1 {
     font-size: 2.5em;
     margin-bottom: 10px;
+    color: white
 }
 
 header p {
@@ -60,10 +61,20 @@ header p {
     height: 100%;
 }
 
-.countries {
-    fill: #e8e8e8;
-    stroke: #999;
-    stroke-width: 0.5px;
+.water {
+    fill: #cfe7f5;
+}
+
+.land {
+    fill: #e7ecef;
+    stroke: #8ca0aa;
+    stroke-width: 0.9px;
+}
+
+.shoreline {
+    fill: none;
+    stroke: #5f7682;
+    stroke-width: 1.3px;
 }
 
 .marker circle {
@@ -73,6 +84,17 @@ header p {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
+
+.fruit circle {
+    fill: #06b060;
+    stroke: white;
+    stroke-width: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
 
 .marker:hover circle {
     r: 9;
@@ -86,15 +108,8 @@ header p {
     filter: drop-shadow(0 0 12px rgba(118, 75, 162, 0.8));
 }
 
-.info-panel {
-    padding: 30px;
-    background: white;
-    overflow-y: auto;
-    border-left: 1px solid #e0e0e0;
-}
-
 #info-content {
-    min-height: 300px;
+    min-height: 200px;
 }
 
 .placeholder {

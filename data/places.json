@@ -1,44 +1,28 @@
 {
   "places": [
     {
-      "name": "Eiffel Tower",
+      "name": "Oakland Museum of California",
       "coordinates": {
-        "lat": 48.8584,
-        "lng": 2.2945
+        "lat": 37.7966, 
+        "lng": -122.2636
       },
-      "annotation": "Iconic iron lattice tower in Paris, France. Built in 1889 for the World's Fair. A must-visit landmark and symbol of Paris."
+      "annotation": "OMCA"
     },
     {
-      "name": "Big Ben & Parliament",
+      "name": "The Stud",
       "coordinates": {
-        "lat": 51.4975,
-        "lng": -0.1246
+        "lat": 37.77613, 
+        "lng": -122.40843
       },
-      "annotation": "Historic clock tower and seat of British Parliament in London. The bell inside the tower is famously known as Big Ben."
+      "annotation": "Historic LGBTQ+ bar and nightclub in San Francisco, California. Known for its vibrant community and cultural significance."
     },
     {
-      "name": "Statue of Liberty",
+      "name": "The Castro Theatre",
       "coordinates": {
-        "lat": 40.6892,
-        "lng": 74.0445
+        "lat": 37.7621, 
+        "lng": -122.4358
       },
-      "annotation": "Colossal neoclassical sculpture on Liberty Island in New York Harbor. A symbol of freedom and democracy since 1886."
-    },
-    {
-      "name": "Colosseum",
-      "coordinates": {
-        "lat": 41.8902,
-        "lng": 12.4922
-      },
-      "annotation": "Ancient Roman amphitheater in Rome, Italy. One of the most impressive structures from ancient Rome, built between 70-80 AD."
-    },
-    {
-      "name": "Taj Mahal",
-      "coordinates": {
-        "lat": 27.1751,
-        "lng": 78.0421
-      },
-      "annotation": "Magnificent white marble mausoleum in Agra, India. Built by Emperor Shah Jahan as a tribute to his beloved wife Mumtaz Mahal."
+      "annotation": "Historic movie palace in the Castro District of San Francisco, California. Known for its distinctive architecture and cultural significance."
     }
   ]
 }
