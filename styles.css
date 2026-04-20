@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 90vh;
+}
+
+header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 40px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.1em;
+    opacity: 0.9;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    flex: 1;
+    gap: 0;
+    overflow: hidden;
+}
+
+#map-container {
+    background: #f0f0f0;
+    overflow: hidden;
+    position: relative;
+    border-right: 1px solid #e0e0e0;
+}
+
+#map-container svg {
+    width: 100%;
+    height: 100%;
+}
+
+.countries {
+    fill: #e8e8e8;
+    stroke: #999;
+    stroke-width: 0.5px;
+}
+
+.marker circle {
+    fill: #667eea;
+    stroke: white;
+    stroke-width: 2;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.marker:hover circle {
+    r: 9;
+    fill: #764ba2;
+    filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.6));
+}
+
+.marker.active circle {
+    r: 10;
+    fill: #764ba2;
+    filter: drop-shadow(0 0 12px rgba(118, 75, 162, 0.8));
+}
+
+.info-panel {
+    padding: 30px;
+    background: white;
+    overflow-y: auto;
+    border-left: 1px solid #e0e0e0;
+}
+
+#info-content {
+    min-height: 300px;
+}
+
+.placeholder {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 0.95em;
+}
+
+.place-info h2 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+.coordinates {
+    background: #f5f5f5;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid #667eea;
+}
+
+.coordinates label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 0.95em;
+}
+
+.coordinate-value {
+    font-family: 'Courier New', monospace;
+    color: #555;
+    margin: 5px 0;
+    font-size: 0.9em;
+    padding-left: 10px;
+}
+
+.annotation {
+    background: #fafafa;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #764ba2;
+}
+
+.annotation-label {
+    display: block;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    font-size: 0.95em;
+}
+
+.annotation p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 0.95em;
+}
+
+.info-panel::-webkit-scrollbar {
+    width: 8px;
+}
+
+.info-panel::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.info-panel::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 4px;
+}
+
+.info-panel::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+    
+    #map-container {
+        border-right: none;
+        border-bottom: 1px solid #e0e0e0;
+        min-height: 300px;
+    }
+    
+    .info-panel {
+        border-left: none;
+    }
+    
+    header h1 {
+        font-size: 1.8em;
+    }
+    
+    header p {
+        font-size: 0.95em;
+    }
+}
