@@ -9,6 +9,36 @@ const path = d3.geoPath().projection(projection);
 // Create SVG
 const svg = mapContainer.append('svg');
 
+// D3 Zoom functionality
+const g = svg.append('g');
+
+// Adding zoom behavior to the svg
+const zoom = d3.zoom()
+  .scaleExtent([1, 10])
+  .on('zoom', (event) => {
+    g.attr('transform', event.transform);
+  });
+
+svg.call(zoom);
+
+// Buttons for zooming in and out
+const zoomInButton = document.getElementById('zoom-in');
+const zoomOutButton = document.getElementById('zoom-out');
+const resetButton = document.getElementById('zoom-reset');
+
+zoomInButton.addEventListener('click', () => {
+  svg.transition().call(zoom.scaleBy, 1.2);
+});
+
+zoomOutButton.addEventListener('click', () => {
+  svg.transition().call(zoom.scaleBy, 0.8);
+});
+
+resetButton.addEventListener('click', () => {
+  svg.transition().call(zoom.transform, d3.zoomIdentity);
+});
+
+
 // Load world map data and places data
 Promise.all([
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json'),
@@ -22,8 +52,8 @@ Promise.all([
     const bounds = d3.geoBounds({ type: 'FeatureCollection', features: coordinates.map(c => ({ type: 'Point', geometry: { type: 'Point', coordinates: c } })) });
     
     // Set projection to fit all places with padding
-    projection.fitExtent([[10, 10], [mapContainer.node().clientWidth - 10, mapContainer.node().clientHeight - 10]], 
-        { type: 'FeatureCollection', features: coordinates.map(c => ({ type: 'Point', geometry: { type: 'Point', coordinates: c } })) });
+    //projection.fitExtent([[10, 10], [mapContainer.node().clientWidth - 10, mapContainer.node().clientHeight - 10]], 
+    //    { type: 'FeatureCollection', features: coordinates.map(c => ({ type: 'Point', geometry: { type: 'Point', coordinates: c } })) });
     
     // Draw countries
     svg.selectAll('.country')
@@ -38,6 +68,8 @@ Promise.all([
         .data(data.places)
         .enter()
         .append('g')
+        .attr('width',20)
+        .attr('height',20)
         .attr('class', 'marker')
         .attr('transform', d => {
             const coords = projection([d.coordinates.lng, d.coordinates.lat]);
