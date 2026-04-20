@@ -1,0 +1,44 @@
+{
+  "places": [
+    {
+      "name": "Eiffel Tower",
+      "coordinates": {
+        "lat": 48.8584,
+        "lng": 2.2945
+      },
+      "annotation": "Iconic iron lattice tower in Paris, France. Built in 1889 for the World's Fair. A must-visit landmark and symbol of Paris."
+    },
+    {
+      "name": "Big Ben & Parliament",
+      "coordinates": {
+        "lat": 51.4975,
+        "lng": -0.1246
+      },
+      "annotation": "Historic clock tower and seat of British Parliament in London. The bell inside the tower is famously known as Big Ben."
+    },
+    {
+      "name": "Statue of Liberty",
+      "coordinates": {
+        "lat": 40.6892,
+        "lng": -74.0445
+      },
+      "annotation": "Colossal neoclassical sculpture on Liberty Island in New York Harbor. A symbol of freedom and democracy since 1886."
+    },
+    {
+      "name": "Colosseum",
+      "coordinates": {
+        "lat": 41.8902,
+        "lng": 12.4922
+      },
+      "annotation": "Ancient Roman amphitheater in Rome, Italy. One of the most impressive structures from ancient Rome, built between 70-80 AD."
+    },
+    {
+      "name": "Taj Mahal",
+      "coordinates": {
+        "lat": 27.1751,
+        "lng": 78.0421
+      },
+      "annotation": "Magnificent white marble mausoleum in Agra, India. Built by Emperor Shah Jahan as a tribute to his beloved wife Mumtaz Mahal."
+    }
+  ]
+}
