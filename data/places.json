@@ -23,6 +23,15 @@
         "lng": -122.4358
       },
       "annotation": "Historic movie palace in the Castro District of San Francisco, California. Known for its distinctive architecture and cultural significance."
+    },
+    {
+      "name": "Steamworks",
+      "coordinates": {
+        "lat": 37.8659665, 
+        "lng": -122.2987483 
+      },
+      "annotation": "Bathhouse"
     }
+    
   ]
 }
