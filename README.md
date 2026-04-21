@@ -1,13 +1,11 @@
 # Maps of Interest
 
-A beautiful web visualization that overlays places of interest onto an interactive map using D3.js.
+A web visualization that overlays places of interest, along with fruit trees from falling-fruit api onto an interactive map using D3.js.
 
 ## Features
 
 - **Interactive Map**: D3.js-powered map visualization with Web Mercator projection
 - **Place Markers**: Click on markers to view detailed information
-- **User Annotations**: Each place includes user-generated annotations
-- **Responsive Design**: Modern, gradient UI with clean typography
 
 ## Data Structure
 
