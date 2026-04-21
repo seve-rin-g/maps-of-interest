@@ -19,45 +19,55 @@ const zoom = d3.zoom()
 
 svg.call(zoom);
 
-// Buttons for zooming in and out
-const zoomInButton = document.getElementById('zoom-in');
-const zoomOutButton = document.getElementById('zoom-out');
-const resetButton = document.getElementById('zoom-reset');
-
-zoomInButton.addEventListener('click', () => {
-    svg.transition().duration(750).call(zoom.scaleBy, 1.2);
-});
-
-zoomOutButton.addEventListener('click', () => {
-  svg.transition().call(zoom.scaleBy, 0.8);
-});
-
-resetButton.addEventListener('click', () => {
-  svg.transition().call(zoom.transform, d3.zoomIdentity);
-});
-
-
 // Load world map data and places data
 Promise.all([
-    d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/land-10m.json'),
     d3.json('data/places.json'),
-    d3.csv('data/fruits.csv')
-]).then(([world, data, fruitThrees]) => {
-    // Extract land geometry from world-atlas TopoJSON
-    const land = topojson.feature(world, world.objects.land);
+    d3.csv('data/fruits.csv'),
+    d3.json('data/geojson.json')
+]).then(([data, fruitThrees, coastline]) => {
     
     // Calculate bounds for all places
     const coordinates = data.places.map(p => [p.coordinates.lng, p.coordinates.lat]);
-    const bounds = d3.geoBounds({ type: 'FeatureCollection', features: coordinates.map(c => ({ type: 'Point', geometry: { type: 'Point', coordinates: c } })) });
+    const placeFeatures = {
+        type: 'FeatureCollection',
+        features: coordinates.map(c => ({ type: 'Feature', geometry: { type: 'Point', coordinates: c } }))
+    };
+    const bounds = d3.geoBounds(placeFeatures);
     
     // Set projection to fit all places with padding
-    projection.fitExtent([[10, 10], [mapContainer.node().clientWidth - 10, mapContainer.node().clientHeight - 10]], 
-        { type: 'FeatureCollection', features: coordinates.map(c => ({ type: 'Point', geometry: { type: 'Point', coordinates: c } })) });
-    
-    svg.append('path')
-        .datum(land)
-        .attr('class', 'land')
-        .attr('d', path);
+    projection.fitExtent([[10, 10], [mapContainer.node().clientWidth - 10, mapContainer.node().clientHeight - 10]], placeFeatures);
+
+
+    const [sw, ne] = bounds;
+    const lngPadding = 1.2;
+    const latPadding = 1.2;
+    const paddedBounds = [
+        [sw[0] - lngPadding, sw[1] - latPadding],
+        [ne[0] + lngPadding, ne[1] + latPadding]
+    ];
+
+    const intersectsBounds = (feature, targetBounds) => {
+        const [[minLng, minLat], [maxLng, maxLat]] = d3.geoBounds(feature);
+        const [[targetMinLng, targetMinLat], [targetMaxLng, targetMaxLat]] = targetBounds;
+
+        return !(maxLng < targetMinLng || minLng > targetMaxLng || maxLat < targetMinLat || minLat > targetMaxLat);
+    };
+
+    const coastlineFeatures = coastline?.type === 'FeatureCollection' ? coastline.features : [];
+    const regionalCoastline = coastlineFeatures.filter(feature => intersectsBounds(feature, paddedBounds));
+
+    svg.append('g')
+        .attr('class', 'coastline-layer')
+        .selectAll('path')
+        .data(regionalCoastline)
+        .enter()
+        .append('path')
+        .attr('class', 'coastline')
+        .attr('d', path)
+        .attr('fill', 'none')
+        .attr('stroke', 'purple')
+        .attr('stroke-width', 1.1)
+        .attr('stroke-opacity', 0.85);
 
     // Create marker groups
     const fruits = svg.selectAll('.fruit')
